@@ -1,0 +1,220 @@
+﻿<Window x:Class="Lab_5_DataBase.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_5_DataBase"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <TabControl>
+            <TabItem Header="CRUD">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="0.15*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <!--Место для отображения таблицы-->
+                    <ScrollViewer Grid.Row="1" Grid.Column="0" Width="650">
+                        <DataGrid
+                        RowEditEnding="UpdateDataGrid_RowEditEnding"
+                        ItemsSource="{Binding}"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        HorizontalAlignment="Left"
+                        Margin="0 20 0 0"
+                        VerticalAlignment="Center"
+                        x:Name="FirstDataGrid"
+                            Width="650">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding ClientId, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="id"/>
+                                <DataGridTextColumn Binding="{Binding ClientSurname, UpdateSourceTrigger=PropertyChanged}" Header="surname"/>
+                                <DataGridTextColumn Binding="{Binding ClientName, UpdateSourceTrigger=PropertyChanged}" Header="name"/>
+                                <DataGridTextColumn Binding="{Binding ClientPatronymic, UpdateSourceTrigger=PropertyChanged}" Header="patronymic"/>
+                                <DataGridTextColumn Binding="{Binding ClientEmail, UpdateSourceTrigger=PropertyChanged}" Header="email"/>
+                                <DataGridTextColumn Binding="{Binding ClientPhone, UpdateSourceTrigger=PropertyChanged}" Header="phone"/>
+                                <DataGridTextColumn Binding="{Binding ClientFortune, UpdateSourceTrigger=PropertyChanged}" Header="balance"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+
+                    <!--Кнопка удаления-->
+                    <Button x:Name="DropButton"
+                        Content="Удалить"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        HorizontalAlignment="Left"
+                        Margin="10,59.4,0,0"
+                        VerticalAlignment="Top"
+                        Width="75"
+                        Click="DropButton_Click"/>
+
+                    <!--Кнопка добавления-->
+                    <Button Content="AddButton"
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        Margin="10,10.4,0,0"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        Width="75"
+                        Click="AddButton_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="StorageProcedure">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"></ColumnDefinition>
+                        <ColumnDefinition Width="187*"/>
+                        <ColumnDefinition Width="197*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                         HorizontalAlignment="Center"
+                        Margin="127.673,30,128.4,0.4">Колиичество бумаг:</Label>
+
+                    <TextBox x:Name="PapersAmount"
+                            Width="200"
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            Height="30"
+                            VerticalAlignment="Top"
+                            Margin="76.673,70,97.4,0"
+                            Grid.Row="0"
+                            VerticalContentAlignment="Center" Grid.RowSpan="2">
+                    </TextBox>
+
+                    <Label
+                         Grid.Row="0"
+                         Grid.Column="2"
+                         HorizontalAlignment="Center"
+                        Margin="187.6,30,168,0.4">Дата:</Label>
+
+                    <DatePicker x:Name="SecondTabDate"
+                            Width="200"
+                            Grid.Column="2"
+                            HorizontalAlignment="Center"
+                            Height="30"
+                            VerticalAlignment="Top"
+                            Margin="106.6,70,87,0"
+                            Grid.Row="0"
+                            VerticalContentAlignment="Center" Grid.RowSpan="2">
+                    </DatePicker>
+
+
+                    <Label 
+                        Content="Id бумаги"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                            Margin="148.673,19.6,163.4,0">
+                    </Label>
+
+                    <TextBox 
+                        x:Name="paperTB"
+                        Width="200"
+                        Height="30"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="76.673,49.6,97.4,0"
+                        VerticalAlignment="Top">
+                    </TextBox>
+
+                    <Label 
+                        Content="Id сделка"
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                            Margin="169.6,19.6,163,0">
+                    </Label>
+
+                    <TextBox 
+                        x:Name="biddingTB"
+                         Width="200"
+                        Height="30"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Margin="96.6,49.6,97,0"
+                         VerticalAlignment="Top">
+
+                    </TextBox>
+
+
+                    <Label 
+                        Content="Клиент"
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                            Margin="155.673,0.2,170.4,0">
+                    </Label>
+
+                    <ComboBox
+                            x:Name="ComboBoxCustomer"
+                            SelectedIndex="0"
+                            Grid.Column="1"
+                            Grid.Row="2"
+                            Height="26"
+                            Margin="129.673,40.2,149.4,0"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            HorizontalAlignment="Center"
+                            ToolTip="Выберите, кем произведен заказ.">
+                        <TextBlock>Не выбрано</TextBlock>
+                        <TextBlock>К</TextBlock>
+                        <TextBlock>Б</TextBlock>
+                    </ComboBox>
+
+                    <Label 
+                        Content="Тип сделки"
+                        Grid.Column="2"
+                        Grid.Row="2"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                            Margin="164.6,0.2,159,0">
+                    </Label>
+
+                    <ComboBox
+                            x:Name="ComboBoxDealType"
+                            SelectedIndex="0"
+                            Grid.Column="2"
+                            Grid.Row="2"
+                            Height="26"
+                            Margin="149.6,40.2,149,0"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            HorizontalAlignment="Center"
+                            ToolTip="Выберите, тип сделки.">
+                        <TextBlock>Не выбрано</TextBlock>
+                        <TextBlock>Покупка</TextBlock>
+                        <TextBlock>Продажа</TextBlock>
+                    </ComboBox>
+
+                    <Button
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Grid.Row="2"
+                        Cursor="Hand"
+                        Click="ProcedureStartButton_Click"
+                        Padding="50 20"
+                        Grid.ColumnSpan="2" Grid.Column="1" Margin="271.673,97.2,292,0" Grid.RowSpan="2">Запуск процедуры</Button>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
