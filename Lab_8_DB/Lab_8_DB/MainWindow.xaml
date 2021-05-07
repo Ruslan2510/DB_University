@@ -1,0 +1,113 @@
+﻿<Window x:Class="Lab_8_DB.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_8_DB"
+        mc:Ignorable="d"
+       Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Grid>
+        <TabControl>
+            <!--Clients start-->
+            <TabItem
+                Header="Clients">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <ScrollViewer
+                        Grid.Column="0">
+                        <DataGrid
+                            x:Name="ClientsGrid"
+                            ItemsSource="{Binding}"
+                            AutoGenerateColumns="False"
+                            CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="Id"/>
+                                <DataGridTextColumn Binding="{Binding Surname}" Header="Surname"/>
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
+                                <DataGridTextColumn Binding="{Binding Patronymic}" Header="Patronymic"/>
+                                <DataGridTextColumn Binding="{Binding Phone}" Header="Phone"/>
+                                <DataGridTextColumn Binding="{Binding Email}" Header="Email"/>
+                                <DataGridTextColumn Binding="{Binding Balance}" Header="Balance"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+
+                    <TextBox
+                        x:Name="SearchInput"
+                        TextChanged="SearchInput_TextChanged"
+                        Grid.Column="1"></TextBox>
+                </Grid>
+            </TabItem>
+            <!--Clients start-->
+
+            <!--Brokers start-->
+            <TabItem
+                Header="Brokers">
+                <Grid>
+                    <ScrollViewer>
+                        <DataGrid
+                            x:Name="BrokersGrid"
+                            ItemsSource="{Binding}"
+                            AutoGenerateColumns="False"
+                            CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="Id"/>
+                                <DataGridTextColumn Binding="{Binding Surname}" Header="Surname"/>
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
+                                <DataGridTextColumn Binding="{Binding Patronymic}" Header="Patronymic"/>
+                                <DataGridTextColumn Binding="{Binding Phone}" Header="Phone"/>
+                                <DataGridTextColumn Binding="{Binding Email}" Header="Email"/>
+                                <DataGridTextColumn Binding="{Binding Experience}" Header="Experience"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <!--Brokers end-->
+
+            <!--Orders start-->
+            <TabItem
+                Header="Orders">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    <ScrollViewer>
+                        <DataGrid
+                            x:Name="OrdersGrid"
+                            RowEditEnding="UpdateDataGrid_RowEditEnding"
+                            ItemsSource="{Binding}"
+                            AutoGenerateColumns="False"
+                            CanUserAddRows="False"
+                            Grid.Column="1">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True"/>
+                                <DataGridTextColumn Binding="{Binding Comment,UpdateSourceTrigger=PropertyChanged}" Header="Comment"/>
+                                <DataGridTextColumn Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Header="Status"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+                    <StackPanel
+                        Grid.Column="1">
+                        <Button 
+                            Content="Добавить"
+                            Click="AddButton_Click"/>
+                        <Button
+                            x:Name="DeleteButton"
+                            Content="Удалить"
+                            Click="DeleteButton_Click">
+                            
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <!--Orders end-->
+        </TabControl>
+    </Grid>
+</Window>
