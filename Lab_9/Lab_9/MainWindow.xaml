@@ -1,0 +1,256 @@
+﻿<Window x:Class="Lab_9.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_9"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Closed="Window_Closed">
+    <Grid>
+        <TabControl>
+
+            <!--Tables-->
+            <TabItem
+                Header="Tables">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.25*"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0">
+                        <ComboBox x:Name="TableNameComboBox" Margin="0 10 0 0" HorizontalAlignment="Center" Width="300" >
+                            <ComboBoxItem IsSelected="True">Client</ComboBoxItem>
+                            <ComboBoxItem>Broker</ComboBoxItem>
+                            <ComboBoxItem>Order</ComboBoxItem>
+                            <ComboBoxItem>Bidding</ComboBoxItem>
+                            <ComboBoxItem>Deal</ComboBoxItem>
+                            <ComboBoxItem>Securities</ComboBoxItem>
+                            <ComboBoxItem>Profit</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button x:Name="GetTableButton"  Margin="0 10 0 0" HorizontalAlignment="Center" Width="300" Click="GetTableButton_Click">Отобразить</Button>
+                    </StackPanel>
+
+                    <ScrollViewer Grid.Row="1">
+                        <DataGrid x:Name="Tables">
+
+                        </DataGrid>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <!--Tables-->
+
+            <!---->
+            <TabItem Header="BrokerageIncome">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0">
+                        Подсчитать доход брокерской конторы (учитывая, что брокер отчисляет конторе 20% своего дохода) за определённый период времени;
+                    </TextBlock>
+
+                    <StackPanel Grid.Row="1">
+                        <DatePicker x:Name="lowLimitPickerFirstGrid" Margin="0 30 0 0" HorizontalAlignment="Center" Width="300">
+
+                        </DatePicker>
+
+                        <DatePicker x:Name="upperLimitPickerFirstGrid" Margin="0 30 0 0" HorizontalAlignment="Center" Width="300">
+
+                        </DatePicker>
+                        <Button x:Name="RunFirstFunc" Margin="0 30 0 0" Click="RunFirstFunc_Click" HorizontalAlignment="Center" Content="Подсчитать"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <!---->
+
+            <!---->
+            <TabItem Header="BurseIncome">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="0.4*"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0,104.2" Grid.RowSpan="2">
+                        Подсчитать доход биржи (учитывая, что брокер отчисляет конторе 20% своего дохода) за определённый период времени;
+                    </TextBlock>
+
+                    <StackPanel Grid.ColumnSpan="3" Margin="0,26,0,0.2" Grid.RowSpan="2">
+                        <DatePicker x:Name="lowLimitPickerSecondGrid" Margin="0 10 0 0" HorizontalAlignment="Center" Width="300">
+
+                        </DatePicker>
+
+                        <DatePicker x:Name="upperLimitPickerSecondGrid" Margin="0 10 0 0" HorizontalAlignment="Center" Width="300">
+
+                        </DatePicker>
+                        <Button x:Name="RunSecondFunc" Margin="0 10 0 0" Click="RunSecondFunc_Click" HorizontalAlignment="Center" Content="Подсчитать"/>
+                    </StackPanel>
+
+                    <ScrollViewer Grid.Row="2">
+                        <DataGrid x:Name="SecondFuncGrid">
+                        </DataGrid>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <!---->
+
+            <!---->
+            <TabItem Header="SecuritiesExchange">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <StackPanel Grid.Row="0">
+                        <TextBlock>
+                            Найти, какие ценные бумаги заданный брокер никогда не продавал бирже;
+                        </TextBlock>
+
+                        <TextBox Width="300" x:Name="ThirdFuncTb" HorizontalAlignment="Center" Margin="0 10 0 0"></TextBox>
+                        
+                        <Button x:Name="RunThirdFunc" Margin="0 10 0 0" Click="RunThirdFunc_Click" HorizontalAlignment="Center" Content="Подсчитать"/>
+                    </StackPanel>
+
+                    <ScrollViewer Grid.Row="1">
+                        <DataGrid x:Name="ThirdFuncGrid">
+                        </DataGrid>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <!---->
+
+            <!---->
+            <TabItem Header="MostProfitable">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <StackPanel Grid.Row="0">
+                        <TextBlock>
+                            Найти самую прибыльную бумагу за все время
+                        </TextBlock>
+
+                        <Button x:Name="RunFourthFunc" Margin="0 10 0 0" Click="RunFourthFunc_Click" HorizontalAlignment="Center" Content="Подсчитать"/>
+                    </StackPanel>
+
+                    <ScrollViewer Grid.Row="1">
+                        <DataGrid x:Name="FourthFuncGrid">
+                        </DataGrid>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <!---->
+
+            <!---->
+            <TabItem Header="SecuritiesOnBurse">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.35*"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <StackPanel Grid.Row="0">
+                        <TextBlock>
+                            Подсчитать количество бумаг, которые находятся на бирже в заданное время.
+                        </TextBlock>
+
+                        <DatePicker x:Name="dateFifthPicker" Margin="0 20 0 0" HorizontalAlignment="Center" Width="300">
+
+                        </DatePicker>
+
+                        <Button x:Name="RunFifthFunc" Margin="0 10 0 0" Click="RunFifthFunc_Click" HorizontalAlignment="Center" Content="Подсчитать"/>
+                    </StackPanel>
+
+                    <ScrollViewer Grid.Row="1">
+                        <DataGrid x:Name="FifthFuncGrid">
+                        </DataGrid>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <!---->
+
+            <!---->
+            <TabItem Header="StoredProcedure">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2">
+                            Хранимая процедура для покупки или продажи ценных бумаг.
+                        </TextBlock>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="250">
+                        <Label>Id торгов</Label>
+                        <TextBox x:Name="biddingIdTb"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="250">
+                        <Label>Id бумаги</Label>
+                        <TextBox x:Name="securitiesIdTb"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="250">
+                        <Label>Кол-во бумаг</Label>
+                        <TextBox x:Name="securitiesAmountTb"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="250">
+                        <Label>Время сделки</Label>
+                        <DatePicker x:Name="storedDate">
+
+                        </DatePicker>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="250">
+                        <Label>Покупатель</Label>
+                        <ComboBox x:Name="CustomerCb">
+                            <ComboBoxItem IsSelected="True">К</ComboBoxItem>
+                            <ComboBoxItem>П</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="250">
+                        <Label>Тип сделки</Label>
+                        <ComboBox x:Name="DealTypeCb">
+                            <ComboBoxItem IsSelected="True">Покупка</ComboBoxItem>
+                            <ComboBoxItem>Продажа</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="4" Grid.ColumnSpan="2">
+                        <Button x:Name="RunStoredProcedure" VerticalAlignment="Center" Click="RunStoredProcedure_Click" HorizontalAlignment="Center" Content="Подсчитать" Width="150"/>
+                    </StackPanel>
+                  
+                </Grid>
+            </TabItem>
+            <!---->
+        </TabControl>
+    </Grid>
+</Window>
